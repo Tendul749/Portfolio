@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P Reddy Naga Tendul — B.Tech AI &amp; ML Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            /* Option 3: Full Dark Mode — Midnight Teal + Deep Abyss & Champagne Gold */
+            --bg-hero: #091316;
+            --bg-page: #0F1E22;
+            --bg-card: #16292E;
+            --border-subtle: #26434B;
+            --text-main: #F0F5F6;
+            --text-muted: #9FB3B8;
+            --accent-primary: #F4B860; /* Champagne Gold */
+
+            /* Typography */
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: var(--font-body);
+        }
+
+        h1, h2, h3, .font-heading {
+            font-family: var(--font-heading);
+        }
+
+        .font-mono-tag {
+            font-family: var(--font-mono);
+        }
+
+        /* Deep Abyss Teal cover banner with subtle geometric grid & champagne-gold/teal radial glow */
+        .hero-cover-bg {
+            background-color: var(--bg-hero);
+            background-image:
+                radial-gradient(circle at 85% 20%, rgba(244, 184, 96, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(38, 67, 75, 0.35) 0%, transparent 50%),
+                linear-gradient(to right, rgba(240, 245, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(240, 245, 246, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        hero: '#091316',
+                        page: '#0F1E22',
+                        card: '#16292E',
+                        line: '#26434B',
+                        mist: '#F0F5F6',
+                        silver: '#9FB3B8',
+                        gold: '#F4B860',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-page text-mist font-sans antialiased selection:bg-gold selection:text-hero">
+
+    <!-- =========================================================
+         NAVIGATION BAR (Sticky Dark Header)
+    ========================================================== -->
+    <header class="sticky top-0 z-50 bg-[#091316]/95 backdrop-blur-md border-b border-line text-mist">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Initials Badge, Name & Roll Number -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <span class="w-8 h-8 rounded-lg bg-gold text-hero font-heading text-xs font-bold flex items-center justify-center tracking-wider shadow-sm group-hover:bg-[#f6c478] transition-colors">
+                        PT
+                    </span>
+                    <div class="flex items-baseline gap-2.5">
+                        <span class="font-heading font-bold text-mist text-sm sm:text-base tracking-tight">
+                            P Reddy Naga Tendul
+                        </span>
+                        <span class="hidden sm:inline-block font-mono-tag text-xs text-silver bg-card border border-line px-2 py-0.5 rounded">
+                            2026BTAI194
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-silver">
+                    <a href="#home" class="hover:text-mist transition-colors">Home</a>
+                    <a href="#about" class="hover:text-mist transition-colors">About</a>
+                    <a href="#skills" class="hover:text-mist transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-mist transition-colors">Projects</a>
+                    <a href="#achievements" class="hover:text-mist transition-colors">Achievements</a>
+                    <a href="#contact" class="px-3.5 py-1.5 rounded-lg bg-gold text-hero font-semibold hover:bg-[#f6c478] transition-colors shadow-sm">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-silver hover:text-mist hover:bg-card border border-transparent hover:border-line transition-colors">
+                    <i class="fa-solid fa-bars text-base" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-hero border-t border-line px-5 py-4 space-y-2">
+            <a href="#home" class="mobile-nav-link block py-2 text-sm font-medium text-silver hover:text-mist">Home</a>
+            <a href="#about" class="mobile-nav-link block py-2 text-sm font-medium text-silver hover:text-mist">About Me</a>
+            <a href="#skills" class="mobile-nav-link block py-2 text-sm font-medium text-silver hover:text-mist">Skills</a>
+            <a href="#projects" class="mobile-nav-link block py-2 text-sm font-medium text-silver hover:text-mist">Projects</a>
+            <a href="#achievements" class="mobile-nav-link block py-2 text-sm font-medium text-silver hover:text-mist">Achievements</a>
+            <a href="#contact" class="mobile-nav-link block mt-2 py-2.5 text-center rounded-lg bg-gold text-hero text-sm font-semibold">Contact</a>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         1. HOME SECTION (Hero Cover Banner + Overlapping Card)
+    ========================================================== -->
+    <section id="home" class="scroll-mt-16">
+        <!-- Deep Abyss Teal Cover Banner -->
+        <div class="hero-cover-bg text-mist pt-14 pb-28 sm:pt-20 sm:pb-32 border-b border-line">
+            <div class="max-w-5xl mx-auto px-5 sm:px-8">
+                <div class="max-w-3xl space-y-5">
+                    <!-- JetBrains Mono Pill -->
+                    <div class="inline-flex flex-wrap items-center gap-2.5 font-mono-tag text-xs tracking-wide uppercase px-3.5 py-1.5 rounded-full bg-card/80 border border-line text-mist">
+                        <span class="w-2 h-2 rounded-full bg-gold"></span>
+                        <span>B.TECH AI &amp; ML // JOY UNIVERSITY</span>
+                    </div>
+
+                    <!-- Bold Space Grotesk H1 -->
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-mist leading-[1.1]">
+                        P Reddy Naga Tendul
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-base sm:text-lg text-silver font-medium">
+                        First-Year Undergraduate &bull; Artificial Intelligence &amp; Machine Learning (NIAT Affiliated)
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-3.5 pt-2">
+                        <a href="#projects" class="px-5 py-2.5 rounded-lg bg-gold text-hero text-sm font-semibold hover:bg-[#f6c478] transition-colors shadow-md">
+                            View Projects
+                        </a>
+                        <a href="#contact" class="px-5 py-2.5 rounded-lg bg-transparent text-mist border border-line text-sm font-medium hover:bg-card hover:border-gold/50 transition-colors">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlapping Elevated Slate Teal Introduction Card -->
+        <div class="max-w-5xl mx-auto px-5 sm:px-8 -mt-16 sm:-mt-20 relative z-10">
+            <div class="bg-card rounded-2xl border border-line shadow-xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-5 border-b border-line">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-12 h-12 rounded-xl bg-hero text-gold font-heading font-bold text-lg flex items-center justify-center border border-gold/40 shrink-0">
+                            PT
+                        </div>
+                        <div>
+                            <span class="font-mono-tag text-xs uppercase tracking-wider text-gold font-medium">Academic Profile</span>
+                            <h2 class="font-heading text-lg sm:text-xl font-bold text-mist mt-0.5">
+                                B.Tech in Artificial Intelligence &amp; Machine Learning
+                            </h2>
+                        </div>
+                    </div>
+                    <span class="self-start sm:self-center font-mono-tag text-xs px-3 py-1.5 rounded-lg bg-page border border-line text-silver">
+                        ID: 2026BTAI194
+                    </span>
+                </div>
+
+                <p class="text-base text-silver leading-relaxed">
+                    First-year Artificial Intelligence &amp; Machine Learning engineering student at <strong class="font-semibold text-mist">Joy University, Vadakangulam</strong>. Prior to university, I completed my Class 10 at <strong class="font-semibold text-mist">Bharatiya Vidya Bhavans</strong> and Classes 11 &amp; 12 at <strong class="font-semibold text-mist">Narayana, MR Palli</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         MAIN CONTENT CONTAINER
+    ========================================================== -->
+    <main class="max-w-5xl mx-auto px-5 sm:px-8">
+
+        <!-- 2. ABOUT ME SECTION -->
+        <section id="about" class="py-16 sm:py-20 border-b border-line scroll-mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-4">
+                    <p class="font-mono-tag text-xs uppercase tracking-wider text-gold mb-1.5">01 // Profile</p>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-mist">About Me</h2>
+                </div>
+
+                <div class="md:col-span-8 space-y-6">
+                    <!-- Educational Background Card -->
+                    <div class="p-6 rounded-xl bg-card border border-line">
+                        <h3 class="font-heading text-base font-bold text-mist mb-4 flex items-center gap-2.5">
+                            <span class="w-2 h-2 rounded-full bg-gold"></span>
+                            Educational Background
+                        </h3>
+                        <ul class="space-y-4 text-sm text-silver">
+                            <li class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 pb-3.5 border-b border-line">
+                                <div>
+                                    <span class="font-semibold text-mist block">Joy University, Vadakangulam</span>
+                                    <span>B.Tech in Artificial Intelligence &amp; Machine Learning (1st Year &bull; ID: <span class="font-mono-tag text-xs text-gold">2026BTAI194</span>)</span>
+                                </div>
+                                <span class="font-mono-tag text-xs text-gold">2026 – Present</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 pb-3.5 border-b border-line">
+                                <div>
+                                    <span class="font-semibold text-mist block">Narayana, MR Palli</span>
+                                    <span>Higher Secondary Education (Classes 11 &amp; 12)</span>
+                                </div>
+                                <span class="font-mono-tag text-xs text-silver">Completed</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                                <div>
+                                    <span class="font-semibold text-mist block">Bharatiya Vidya Bhavans</span>
+                                    <span>Secondary School Education (Class 10)</span>
+                                </div>
+                                <span class="font-mono-tag text-xs text-silver">Completed</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Side-by-Side Cards: Interests & Learning Goals -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="p-6 rounded-xl bg-card border border-line">
+                            <div class="w-8 h-8 rounded-lg bg-page border border-line text-gold flex items-center justify-center mb-3.5">
+                                <i class="fa-solid fa-compass text-sm"></i>
+                            </div>
+                            <h3 class="font-heading text-base font-bold text-mist mb-2">Interests</h3>
+                            <p class="text-sm text-silver leading-relaxed">
+                                AI &amp; ML systems, Python automation &amp; LLM APIs, full-stack web development, embedded hardware prototyping, and structured strength training.
+                            </p>
+                        </div>
+
+                        <div class="p-6 rounded-xl bg-card border border-line">
+                            <div class="w-8 h-8 rounded-lg bg-page border border-line text-gold flex items-center justify-center mb-3.5">
+                                <i class="fa-solid fa-bullseye text-sm"></i>
+                            </div>
+                            <h3 class="font-heading text-base font-bold text-mist mb-2">Learning Goals &amp; Career Aspirations</h3>
+                            <p class="text-sm text-silver leading-relaxed">
+                                Developing scalable AI-driven applications, mastering Python software engineering, and building impactful real-world intelligent systems.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SKILLS SECTION -->
+        <section id="skills" class="py-16 sm:py-20 border-b border-line scroll-mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-4">
+                    <p class="font-mono-tag text-xs uppercase tracking-wider text-gold mb-1.5">02 // Capabilities</p>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-mist">Skills</h2>
+                </div>
+
+                <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <!-- Programming Languages -->
+                    <div class="p-6 rounded-xl bg-card border border-line">
+                        <h3 class="font-heading text-base font-bold text-mist mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-gold"></span>
+                            Programming Languages
+                        </h3>
+                        <div class="flex flex-wrap gap-2.5">
+                            <span class="font-mono-tag text-xs font-medium px-3.5 py-1.5 rounded-lg bg-hero border border-line text-gold">
+                                Python
+                            </span>
+                            <span class="font-mono-tag text-xs font-medium px-3.5 py-1.5 rounded-lg bg-hero border border-line text-gold">
+                                HTML/CSS
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Other Relevant Skills -->
+                    <div class="p-6 rounded-xl bg-card border border-line">
+                        <h3 class="font-heading text-base font-bold text-mist mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-gold"></span>
+                            Other Relevant Skills
+                        </h3>
+                        <div class="flex flex-wrap gap-2.5">
+                            <span class="font-mono-tag text-xs font-medium px-3.5 py-1.5 rounded-lg bg-page border border-line text-mist">
+                                Problem Solving
+                            </span>
+                            <span class="font-mono-tag text-xs font-medium px-3.5 py-1.5 rounded-lg bg-page border border-line text-mist">
+                                Embedded Systems &amp; Hardware Prototyping
+                            </span>
+                            <span class="font-mono-tag text-xs font-medium px-3.5 py-1.5 rounded-lg bg-page border border-line text-mist">
+                                Git &amp; Version Control
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS SECTION -->
+        <section id="projects" class="py-16 sm:py-20 border-b border-line scroll-mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-4">
+                    <p class="font-mono-tag text-xs uppercase tracking-wider text-gold mb-1.5">03 // Selected Work</p>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-mist">Projects</h2>
+                </div>
+
+                <div class="md:col-span-8 space-y-6">
+                    <!-- Project 1 -->
+                    <article class="p-6 sm:p-7 rounded-xl bg-card border border-line hover:border-gold/50 transition-colors">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="font-mono-tag text-xs text-gold font-medium">AI &amp; Automation Build</span>
+                            <span class="font-mono-tag text-xs px-2.5 py-0.5 rounded bg-page border border-line text-silver">
+                                Python &amp; LLM API
+                            </span>
+                        </div>
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-mist mb-2.5">
+                            J.A.R.V.I.S. — Personalized Desktop AI Assistant
+                        </h3>
+                        <p class="text-sm sm:text-base text-silver leading-relaxed mb-4">
+                            Engineered a voice-enabled desktop AI assistant in <strong class="font-semibold text-mist">Python</strong> integrating Gemini LLM APIs, custom voice synthesis, and automated local file management workflows for hands-free productivity.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="font-mono-tag text-xs px-2.5 py-1 rounded bg-page border border-line text-gold">Python</span>
+                            <span class="font-mono-tag text-xs px-2.5 py-1 rounded bg-page border border-line text-silver">Gemini LLM API</span>
+                            <span class="font-mono-tag text-xs px-2.5 py-1 rounded bg-page border border-line text-silver">Voice Synthesis</span>
+                            <span class="font-mono-tag text-xs px-2.5 py-1 rounded bg-page border border-line text-silver">File Automation</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="p-6 sm:p-7 rounded-xl bg-card border border-line hover:border-gold/50 transition-colors">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="font-mono-tag text-xs text-gold font-medium">Web Development &amp; Deployment</span>
+                            <span class="font-mono-tag text-xs px-2.5 py-0.5 rounded bg-page border border-line text-silver">
+                                HTML5 / CSS / Git
+                            </span>
+                        </div>
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-mist mb-2.5">
+                            Personal Developer Portfolio &amp; Web Deployment
+                        </h3>
+                        <p class="text-sm sm:text-base text-silver leading-relaxed mb-4">
+                            Designed and published a responsive personal portfolio website utilizing semantic <strong class="font-semibold text-mist">HTML5</strong>, modern <strong class="font-semibold text-mist">CSS</strong>, <strong class="font-semibold text-mist">JetBrains Mono</strong> and <strong class="font-semibold text-mist">Space Grotesk</strong> typography, and <strong class="font-semibold text-mist">Git &amp; Version Control</strong>.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="font-mono-tag text-xs px-2.5 py-1 rounded bg-page border border-line text-gold">HTML5 &amp; CSS</span>
+                            <span class="font-mono-tag text-xs px-2.5 py-1 rounded bg-page border border-line text-silver">Space Grotesk &amp; JetBrains Mono</span>
+                            <span class="font-mono-tag text-xs px-2.5 py-1 rounded bg-page border border-line text-silver">Git &amp; Version Control</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ACHIEVEMENTS SECTION -->
+        <section id="achievements" class="py-16 sm:py-20 border-b border-line scroll-mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-4">
+                    <p class="font-mono-tag text-xs uppercase tracking-wider text-gold mb-1.5">04 // Milestones</p>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-mist">Achievements</h2>
+                </div>
+
+                <div class="md:col-span-8">
+                    <ul class="divide-y divide-line border border-line rounded-xl bg-card overflow-hidden">
+                        <li class="p-5 sm:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1.5">
+                                <h3 class="font-heading text-base font-bold text-mist">
+                                    B.Tech AI &amp; ML Undergraduate Standing
+                                </h3>
+                                <span class="font-mono-tag text-xs text-gold">Joy University &bull; 2026BTAI194</span>
+                            </div>
+                            <p class="text-sm text-silver leading-relaxed">
+                                Actively completing core first-year undergraduate coursework in Python programming, web development, mathematics, and artificial intelligence fundamentals.
+                            </p>
+                        </li>
+
+                        <li class="p-5 sm:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1.5">
+                                <h3 class="font-heading text-base font-bold text-mist">
+                                    AI Assistant &amp; Voice Synthesis Prototyping
+                                </h3>
+                                <span class="font-mono-tag text-xs text-silver">Independent Technical Build</span>
+                            </div>
+                            <p class="text-sm text-silver leading-relaxed">
+                                Built and integrated cloud LLM APIs with custom voice synthesis and automated Python file-management workflows.
+                            </p>
+                        </li>
+
+                        <li class="p-5 sm:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1.5">
+                                <h3 class="font-heading text-base font-bold text-mist">
+                                    Higher Secondary Academic Completion
+                                </h3>
+                                <span class="font-mono-tag text-xs text-silver">Narayana, MR Palli &amp; Bharatiya Vidya Bhavans</span>
+                            </div>
+                            <p class="text-sm text-silver leading-relaxed">
+                                Completed Class 10 at Bharatiya Vidya Bhavans and Classes 11 &amp; 12 at Narayana, MR Palli with a solid foundation in analytical problem solving and sciences.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT SECTION -->
+        <section id="contact" class="py-16 sm:py-20 scroll-mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-4">
+                    <p class="font-mono-tag text-xs uppercase tracking-wider text-gold mb-1.5">05 // Connect</p>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-mist">Contact</h2>
+                </div>
+
+                <div class="md:col-span-8 space-y-6">
+                    <p class="text-base text-silver leading-relaxed">
+                        Open to academic collaborations, Python &amp; AI project discussions, and engineering opportunities. Reach out directly via email below.
+                    </p>
+
+                    <!-- Email Card with Copy Email & Send Mail Buttons -->
+                    <div class="p-5 sm:p-6 rounded-xl bg-card border border-line flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <span class="block font-mono-tag text-xs text-gold mb-1">DIRECT EMAIL</span>
+                            <a href="mailto:tendulpantra@gmail.com" id="email-text" class="font-heading text-base sm:text-lg font-bold text-mist hover:text-gold transition-colors">
+                                tendulpantra@gmail.com
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-2.5 shrink-0">
+                            <button type="button" onclick="copyEmail()" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-page border border-line text-sm font-medium text-mist hover:border-gold/60 hover:text-gold transition-colors">
+                                <i class="fa-regular fa-copy text-xs" id="copy-icon"></i>
+                                <span id="copy-label">Copy Email</span>
+                            </button>
+                            <a href="mailto:tendulpantra@gmail.com" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gold text-hero text-sm font-semibold hover:bg-[#f6c478] transition-colors">
+                                <i class="fa-regular fa-paper-plane text-xs"></i>
+                                <span>Send Mail</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Social / Professional Profile Links (GitHub & LinkedIn) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <a href="https://github.com/Tendul749" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="p-4 rounded-xl bg-card border border-line hover:border-gold/60 transition-colors flex items-center justify-between group">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-lg bg-page border border-line flex items-center justify-center text-mist group-hover:bg-gold group-hover:text-hero group-hover:border-gold transition-colors">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="font-heading text-sm font-bold text-mist group-hover:text-gold transition-colors">GitHub</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-silver group-hover:text-gold transition-colors"></i>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/tendul-pantra-0786b1341/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="p-4 rounded-xl bg-card border border-line hover:border-gold/60 transition-colors flex items-center justify-between group">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-lg bg-page border border-line flex items-center justify-center text-mist group-hover:bg-gold group-hover:text-hero group-hover:border-gold transition-colors">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                                    </svg>
+                                </div>
+                                <span class="font-heading text-sm font-bold text-mist group-hover:text-gold transition-colors">LinkedIn</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-silver group-hover:text-gold transition-colors"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+    <footer class="border-t border-line bg-hero text-silver">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm">
+            <p>&copy; 2026 <span class="text-mist font-medium">P Reddy Naga Tendul</span> (<span class="font-mono-tag text-gold">2026BTAI194</span>) &bull; Joy University, Vadakangulam</p>
+            <div class="flex items-center gap-4">
+                <span class="rounded-lg border border-line bg-card px-3.5 py-1.5 text-xs font-medium text-silver">
+                    Credits: <span class="font-semibold text-mist">Gemini</span>
+                </span>
+                <a href="#home" class="font-medium text-gold hover:underline">Back to top &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification for Copy Feedback -->
+    <div id="toast" role="status" aria-live="polite" class="fixed bottom-6 right-6 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-lg bg-card border border-gold/50 text-mist text-sm font-medium shadow-2xl">
+        <i class="fa-solid fa-check text-xs text-gold"></i>
+        <span>Email copied to clipboard</span>
+    </div>
+
+    <!-- =========================================================
+         JAVASCRIPT (Mobile Menu & Clipboard Copy)
+    ========================================================== -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !isHidden);
+            menuIcon.className = isHidden ? 'fa-solid fa-xmark text-base' : 'fa-solid fa-bars text-base';
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-base';
+            });
+        });
+
+        // Copy Email with iFrame-safe execCommand & Toast Feedback
+        let toastTimeout;
+        function copyEmail() {
+            const emailText = document.getElementById('email-text').innerText.trim();
+            const tempInput = document.createElement('input');
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const copyIcon = document.getElementById('copy-icon');
+            const copyLabel = document.getElementById('copy-label');
+            copyIcon.className = 'fa-solid fa-check text-xs text-gold';
+            copyLabel.textContent = 'Copied';
+
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                copyIcon.className = 'fa-regular fa-copy text-xs';
+                copyLabel.textContent = 'Copy Email';
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
